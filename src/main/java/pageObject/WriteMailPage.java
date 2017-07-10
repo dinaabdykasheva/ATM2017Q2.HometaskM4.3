@@ -36,8 +36,8 @@ public class WriteMailPage extends AbstractPage{
         wait.until(ExpectedConditions.visibilityOfElementLocated(SAVING_LABEL_LOCATOR));
         WebElement element = driver.findElement(SAVING_LABEL_LOCATOR);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].style.border='3px solid green'", driver.findElement(SAVING_LABEL_LOCATOR));
-        executor.executeScript("arguments[0].style.border='0px'", driver.findElement(SAVING_LABEL_LOCATOR));
+        executor.executeScript("arguments[0].style.border='3px solid green'", element);
+        executor.executeScript("arguments[0].style.border='0px'", element);
         driver.findElement(CLOSE_WRITE_MAIL_WINDOW_LOCATOR).click();
         driver.findElement(DRAFTS_FOLDER_LOCATOR).click();
         return new DraftsFolderPage(driver);

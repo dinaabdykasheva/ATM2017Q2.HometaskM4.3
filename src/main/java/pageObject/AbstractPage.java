@@ -22,7 +22,6 @@ public class AbstractPage {
         driver.manage().window().maximize();
     }
 
-    private static final int WAIT_FOR_ELEMENT_TIMEOUT_SECONDS = 10;
     protected WebDriver driver;
 
     public AbstractPage(WebDriver driver) {

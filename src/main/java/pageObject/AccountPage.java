@@ -2,10 +2,6 @@ package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Dina_Abdykasheva on 6/15/2017.
@@ -42,9 +38,9 @@ public class AccountPage extends AbstractPage {
         return new SentFolderPage(driver);
     }
 
-    public AccountPage exitGMail() {
+    public LoginToGMailPage exitGMail() {
         driver.findElement(ACCOUNT_ICON_LOCATOR).click();
         driver.findElement(EXIT_BUTTON_LOCATOR).click();
-        return this;
+        return new LoginToGMailPage(driver);
     }
 }
