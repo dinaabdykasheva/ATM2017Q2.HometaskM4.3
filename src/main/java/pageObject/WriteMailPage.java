@@ -27,7 +27,7 @@ public class WriteMailPage extends AbstractPage{
         fillReceiver.complexAction(TO_FIELD_LOCATOR, to);
         driver.findElement(SUBJECT_FIELD_LOCATOR).sendKeys(subject);
         driver.findElement(BODY_FIELD_LOCATOR).sendKeys(body);
-        waitForElementPresent(driver, 10, ExpectedConditions.visibilityOfElementLocated(SAVING_LABEL_LOCATOR));
+        waitForElementPresent(ExpectedConditions.visibilityOfElementLocated(SAVING_LABEL_LOCATOR));
         highlightExecutor = new WebElementsUtils(driver);
         highlightExecutor.jsExecutor(SAVING_LABEL_LOCATOR, "arguments[0].style.border='3px solid green'");
         highlightExecutor.jsExecutor(SAVING_LABEL_LOCATOR, "arguments[0].style.border='0px'");

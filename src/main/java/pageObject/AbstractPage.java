@@ -45,8 +45,8 @@ public class AbstractPage {
         return !driver.findElements(locator).isEmpty();
     }
 
-    public void waitForElementPresent(WebDriver driver, long timeOutInSeconds, ExpectedCondition<WebElement> expectedConditions) {
-        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+    public void waitForElementPresent(ExpectedCondition<WebElement> expectedConditions) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(expectedConditions);
     }
 

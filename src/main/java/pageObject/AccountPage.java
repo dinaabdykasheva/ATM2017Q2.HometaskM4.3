@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  * Created by Dina_Abdykasheva on 6/15/2017.
  */
 public class AccountPage extends AbstractPage {
-    private static final By ACCOUNT_ICON_LOCATOR = By.xpath(".//span [@class='gb_8a gbii']");
+    private static final By ACCOUNT_ICON_LOCATOR = By.xpath(".//span [@class='gb_7a gbii']");
     private static final By WRITE_MAIL_BUTTON_LOCATOR = By.xpath(".//div[@class='T-I J-J5-Ji T-I-KE L3']");
     private static final By DRAFTS_FOLDER_LOCATOR = By.xpath(".//a[contains(text(), 'Черновики')]");
     private static final By SENT_MAIL_FOLDER_LOCATOR = By.xpath(".//a[contains(text(), 'Отправленные')]");
