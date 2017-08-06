@@ -23,7 +23,7 @@ public class AccountPage extends AbstractPage {
     }
 
     public boolean isAccountIconPresent() {
-        return !driver.findElements(ACCOUNT_ICON_LOCATOR).isEmpty();
+        return isElementPresent(ACCOUNT_ICON_LOCATOR);
     }
 
     public DraftsFolderPage openDrafts() {
