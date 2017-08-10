@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Dina_Abdykasheva on 8/10/2017.
  */
-public class BrowserStartAndClose {
+public class BaseTest {
     public WebDriver driver;
 
     @BeforeClass(description = "StartBrowser")

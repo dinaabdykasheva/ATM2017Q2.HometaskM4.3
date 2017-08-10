@@ -7,18 +7,18 @@ import org.testng.annotations.Test;
 /**
  * Created by Dina_Abdykasheva on 6/15/2017.
  */
-public class GMailTestPO extends  BrowserStartAndClose{
+public class GMailTestPO extends BaseTest {
 
-    public DraftsFolderPage writeMail, openDraftFolder;
-    public WriteMailPage openSavedDraft;
+    public DraftsFolderPage writeMail, openDraftFolder, draftsFolder;
+    public WriteMailPage openSavedDraft, writeMailPage;
     public SentFolderPage sendMail;
-    public LoginToGMailPage exitGMail;
+    public LoginToGMailPage login,exitGMail;
     public AccountPage accountPage;
 
     @Test(description = "loginToAccountTest", priority = 0)
     @Parameters({"username", "password"})
     public void loginToAccountTest(String username, String password) {
-        accountPage = new LoginToGMailPage(driver).loginToGMail(username, password);
+        accountPage = login.loginToGMail(username, password);
         boolean isAccountIconPresent = accountPage.isAccountIconPresent();
         Assert.assertTrue(isAccountIconPresent, "User isn't logged in");
     }
@@ -34,7 +34,7 @@ public class GMailTestPO extends  BrowserStartAndClose{
     @Test(description = "VerifySavedDraftReceiverTest", dependsOnMethods = "saveToDraftTest")
     @Parameters({"recipient"})
     public void verifySavedDraftReceiverTest(String recipient) {
-        openSavedDraft = new DraftsFolderPage(driver).openDraftMail();
+        openSavedDraft = draftsFolder.openDraftMail();
         String receiver = openSavedDraft.getReceiver();
         Assert.assertEquals(recipient, receiver, "Receiver isn't valid");
     }
@@ -42,34 +42,34 @@ public class GMailTestPO extends  BrowserStartAndClose{
     @Test(description = "VerifySavedDraftSubjectTest", dependsOnMethods = "verifySavedDraftReceiverTest")
     @Parameters({"subject"})
     public void verifySavedDraftSubjectTest(String subject) {
-        String mailSubject = new WriteMailPage(driver).getSubject();
+        String mailSubject = writeMailPage.getSubject();
         Assert.assertEquals(subject, mailSubject, "Subject isn't valid");
     }
 
     @Test(description = "VerifySavedDraftBodyTest", dependsOnMethods = "verifySavedDraftSubjectTest")
     @Parameters({"body"})
     public void verifySavedDraftBodyTest(String body) {
-        String mailBody = new WriteMailPage(driver).getBody();
+        String mailBody = writeMailPage.getBody();
         Assert.assertEquals(body, mailBody, "Body isn't valid");
     }
 
     @Test(description = "isMailSent", dependsOnMethods = {"verifySavedDraftReceiverTest", "verifySavedDraftSubjectTest", "verifySavedDraftBodyTest"})
     public void isMailSent() {
-        sendMail = new WriteMailPage(driver).sendMail().openSentMail();
+        sendMail = writeMailPage.sendMail().openSentMail();
         boolean isMailSent = sendMail.isMailSent();
         Assert.assertTrue(isMailSent, "Mail wasn't sent");
     }
 
     @Test(description = "MailIsDeletedFromDraftsTest", dependsOnMethods = "isMailSent")
     public void mailIsDeletedFromDraftsTest() {
-        openDraftFolder = new AccountPage(driver).openDrafts();
+        openDraftFolder = accountPage.openDrafts();
         boolean isMailDeletedFromDrafts = openDraftFolder.isDraftMailDisplayed();
         Assert.assertFalse(isMailDeletedFromDrafts, "Mail isn't deleted from drafts");
     }
 
     @Test(description = "ExitGMailTest", dependsOnMethods = "isMailSent")
     public void exitGMailTest() {
-        exitGMail = new AccountPage(driver).exitGMail();
+        exitGMail = accountPage.exitGMail();
         boolean isUserLoggedOff = exitGMail.isUserLoggedOff();
         Assert.assertTrue(isUserLoggedOff, "User wasn't logged off");
     }

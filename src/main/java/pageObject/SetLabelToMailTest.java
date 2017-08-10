@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 /**
  * Created by User on 06.08.2017.
  */
-public class SetLabelToMailTest extends BrowserStartAndClose {
+public class SetLabelToMailTest extends BaseTest {
     public AccountPage accountPage;
     public SentFolderPage sentFolderPage;
     public SentMailPage sentMailPage;
