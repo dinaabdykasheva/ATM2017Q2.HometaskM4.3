@@ -23,19 +23,19 @@ public class WriteMailPage extends AbstractPage{
     }
 
     public DraftsFolderPage writeMailAndSaveToDraft(String to, String subject, String body) {
-        fillReceiver.fillInField(TO_FIELD_LOCATOR, to);
+        fillReceiver.fillInField(driver, TO_FIELD_LOCATOR, to);
         driver.findElement(SUBJECT_FIELD_LOCATOR).sendKeys(subject);
         driver.findElement(BODY_FIELD_LOCATOR).sendKeys(body);
         waitForElementPresent(ExpectedConditions.visibilityOfElementLocated(SAVING_LABEL_LOCATOR));
-        highlightExecutor.executeJavaScript(SAVING_LABEL_LOCATOR, "arguments[0].style.border='3px solid green'");
-        highlightExecutor.executeJavaScript(SAVING_LABEL_LOCATOR, "arguments[0].style.border='0px'");
+        highlightExecutor.executeJavaScript(driver, SAVING_LABEL_LOCATOR, "arguments[0].style.border='3px solid green'");
+        highlightExecutor.executeJavaScript(driver, SAVING_LABEL_LOCATOR, "arguments[0].style.border='0px'");
         driver.findElement(CLOSE_WRITE_MAIL_WINDOW_LOCATOR).click();
         driver.findElement(DRAFTS_FOLDER_LOCATOR).click();
         return new DraftsFolderPage(driver);
     }
 
     public String getReceiver() {
-        moveToReceiver.moveToField(TO_FIELD_LOCATOR);
+        moveToReceiver.moveToField(driver, TO_FIELD_LOCATOR);
         return driver.findElement(TO_FIELD_IN_DRAFT_LOCATOR).getAttribute("email");
     }
 

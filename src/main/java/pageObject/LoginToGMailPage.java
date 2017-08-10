@@ -23,7 +23,7 @@ public class LoginToGMailPage extends AbstractPage{
         driver.findElement(USERNAME_INPUT_LOCATOR).sendKeys(username);
         driver.findElement(NEXT_BUTTON_LOCATOR).click();
         driver.findElement(PASSWORD_INPUT_LOCATOR).sendKeys(password);
-        loginJSExecutor.executeJavaScript(NEXT_BUTTON_LOCATOR1, "arguments[0].click()");
+        loginJSExecutor.executeJavaScript(driver, NEXT_BUTTON_LOCATOR1, "arguments[0].click()");
         return new AccountPage(driver);
     }
 
