@@ -1,6 +1,5 @@
 package pageObject;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -8,19 +7,13 @@ import org.testng.annotations.Test;
 /**
  * Created by Dina_Abdykasheva on 6/15/2017.
  */
-public class GMailTestPO extends  AbstractPage{
+public class GMailTestPO extends  BrowserStartAndClose{
 
     public DraftsFolderPage writeMail, openDraftFolder;
     public WriteMailPage openSavedDraft;
     public SentFolderPage sendMail;
     public LoginToGMailPage exitGMail;
     public AccountPage accountPage;
-
-    public GMailTestPO(WebDriver driver) {
-        super(driver);
-    }
-
-    public GMailTestPO() {}
 
     @Test(description = "loginToAccountTest", priority = 0)
     @Parameters({"username", "password"})
@@ -33,7 +26,7 @@ public class GMailTestPO extends  AbstractPage{
     @Test(description = "SaveToDraftTest", dependsOnMethods = "loginToAccountTest")
     @Parameters({"recipient", "subject", "body"})
     public void saveToDraftTest(String recipient, String subject, String body) {
-        writeMail = new AccountPage(driver).clickWriteMailButton().writeMailAndSaveToDraft(recipient, subject, body);
+        writeMail = accountPage.clickWriteMailButton().writeMailAndSaveToDraft(recipient, subject, body);
         boolean isDraftMailSaved = writeMail.isDraftMailDisplayed();
         Assert.assertTrue(isDraftMailSaved, "Mail isn't saved in drafts");
     }

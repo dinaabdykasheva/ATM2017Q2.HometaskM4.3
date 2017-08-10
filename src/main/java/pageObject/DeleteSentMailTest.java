@@ -1,6 +1,5 @@
 package pageObject;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -8,17 +7,10 @@ import org.testng.annotations.Test;
 /**
  * Created by User on 06.08.2017.
  */
-public class DeleteSentMailTest extends AbstractPage {
+public class DeleteSentMailTest extends BrowserStartAndClose {
     public AccountPage accountPage;
     public SentFolderPage sentFolderPage;
     public SentMailPage sentMailPage;
-
-    public DeleteSentMailTest(WebDriver driver) {
-        super(driver);
-    }
-
-    public DeleteSentMailTest() {
-    }
 
     @Test(description = "loginToGMailTest", priority = 0)
     @Parameters({"username", "password"})
