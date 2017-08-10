@@ -9,24 +9,22 @@ import org.openqa.selenium.interactions.Actions;
 /**
  * Created by User on 06.08.2017.
  */
-public class WebElementsUtils extends AbstractPage{
+public class WebElementsUtils{
 
-    public WebElementsUtils(WebDriver driver) {
-        super(driver);
-    }
+    static WebDriver driver;
 
-    public void jsExecutor(By locator, String script) {
+    public static void executeJavaScript(By locator, String script) {
         WebElement element = driver.findElement(locator);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript(script, element);
     }
 
-    public void simpleAction(By locator) {
+    public static void moveToField(By locator) {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(locator));
     }
 
-    public void complexAction(By locator, String keys) {
+    public static void fillInField(By locator, String keys) {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(locator)).click().sendKeys(keys).build().perform();
     }

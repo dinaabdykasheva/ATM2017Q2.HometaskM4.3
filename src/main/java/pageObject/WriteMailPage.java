@@ -23,22 +23,19 @@ public class WriteMailPage extends AbstractPage{
     }
 
     public DraftsFolderPage writeMailAndSaveToDraft(String to, String subject, String body) {
-        fillReceiver = new WebElementsUtils(driver);
-        fillReceiver.complexAction(TO_FIELD_LOCATOR, to);
+        fillReceiver.fillInField(TO_FIELD_LOCATOR, to);
         driver.findElement(SUBJECT_FIELD_LOCATOR).sendKeys(subject);
         driver.findElement(BODY_FIELD_LOCATOR).sendKeys(body);
         waitForElementPresent(ExpectedConditions.visibilityOfElementLocated(SAVING_LABEL_LOCATOR));
-        highlightExecutor = new WebElementsUtils(driver);
-        highlightExecutor.jsExecutor(SAVING_LABEL_LOCATOR, "arguments[0].style.border='3px solid green'");
-        highlightExecutor.jsExecutor(SAVING_LABEL_LOCATOR, "arguments[0].style.border='0px'");
+        highlightExecutor.executeJavaScript(SAVING_LABEL_LOCATOR, "arguments[0].style.border='3px solid green'");
+        highlightExecutor.executeJavaScript(SAVING_LABEL_LOCATOR, "arguments[0].style.border='0px'");
         driver.findElement(CLOSE_WRITE_MAIL_WINDOW_LOCATOR).click();
         driver.findElement(DRAFTS_FOLDER_LOCATOR).click();
         return new DraftsFolderPage(driver);
     }
 
     public String getReceiver() {
-        moveToReceiver = new WebElementsUtils(driver);
-        moveToReceiver.simpleAction(TO_FIELD_LOCATOR);
+        moveToReceiver.moveToField(TO_FIELD_LOCATOR);
         return driver.findElement(TO_FIELD_IN_DRAFT_LOCATOR).getAttribute("email");
     }
 
