@@ -11,20 +11,18 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class WebElementsUtils{
 
-    static WebDriver driver;
-
-    public static void executeJavaScript(By locator, String script) {
+    public static void executeJavaScript(WebDriver driver, By locator, String script) {
         WebElement element = driver.findElement(locator);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript(script, element);
     }
 
-    public static void moveToField(By locator) {
+    public static void moveToField(WebDriver driver, By locator) {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(locator));
     }
 
-    public static void fillInField(By locator, String keys) {
+    public static void fillInField(WebDriver driver, By locator, String keys) {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(locator)).click().sendKeys(keys).build().perform();
     }
